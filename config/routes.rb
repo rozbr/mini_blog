@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get '/posts/new' => 'posts#new', as: :posts
   get '/posts/:id' => 'posts#show', as: :show_post
   post '/posts/new' => 'posts#create'
+  match '/posts' => 'posts#list', as: :list_posts, via: [:get, :post]
 
   root 'posts#index'
 end

@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   def index
     @posts = Post.all
+    @categories = Category.all
   end
 
   def new
@@ -30,5 +31,27 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+  end
+
+  def list
+    if params.has_key? :checked_categories
+      @posts = []
+      categories = []
+      checked_categories = params.require(:checked_categories)
+
+      checked_categories.keys.each do |id|
+        categories << Category.find(id)
+      end
+
+      categories.each do |category|
+        category.posts.each do |post|
+          @posts << post
+        end
+      end
+    else
+      @posts = Post.all
+    end
+
+    @posts = @posts.uniq
   end
 end

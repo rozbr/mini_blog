@@ -1,0 +1,9 @@
+
+<ul>
+  <% @posts.each do |post| %>
+    <li>
+      <%= link_to post.title, show_post_path(post) %>
+    </li>
+  <% end %>
+</ul>
+

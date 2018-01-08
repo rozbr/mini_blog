@@ -2,7 +2,20 @@
 <%= link_to 'Nova Postagem', :posts %>
 <%= link_to 'Nova Categoria', :categories %>
 
-</br>
+<hr>
+
+<%= form_tag :list_posts do %>
+  <% @categories.each do |category| %>
+    <%= check_box_tag "checked_categories[#{category.id}]" %>
+    <%= category.name %>
+  <% end %>
+
+  </br>
+
+  <%= submit_tag "Filtrar" %>
+<% end %>
+
+<hr>
 
 <ul>
   <% @posts.each do |post| %>
