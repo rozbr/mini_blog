@@ -3,4 +3,11 @@ class Post < ApplicationRecord
 
   validates_presence_of :title
   validates_presence_of :content
+
+  def to_csv
+    CSV.generate do |csv|
+      csv << %w{ title content }
+      csv << [ self.title, self.content ]
+    end
+  end
 end

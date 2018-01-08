@@ -15,3 +15,5 @@ Categorias:
   < <%= category.name %> >
 <% end %>
 
+<hr>
+<%= link_to 'Exportar para CSV', export_as_csv_path(@post, format: :csv) %>

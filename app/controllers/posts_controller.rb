@@ -54,4 +54,16 @@ class PostsController < ApplicationController
 
     @posts = @posts.uniq
   end
+
+  def export_csv
+    post = Post.find(params[:id])
+
+    respond_to do |format|
+      format.html
+      format.csv {
+        send_data post.to_csv,
+        filename: "#{post.title}.csv"
+      }
+    end
+  end
 end
