@@ -56,13 +56,24 @@ class PostsController < ApplicationController
   end
 
   def export_csv
-    post = Post.find(params[:id])
+    posts = []
+    ids = params[:id].split('/')
+
+    ids.each do |id|
+      posts << Post.find(id)
+    end
+
+    if posts.size == 1
+      fn = posts.first.title
+    else
+      fn = 'postagens'
+    end
 
     respond_to do |format|
       format.html
       format.csv {
-        send_data post.to_csv,
-        filename: "#{post.title}.csv"
+        send_data posts.first.to_csv(posts),
+        filename: "#{fn}.csv"
       }
     end
   end

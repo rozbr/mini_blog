@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   get '/posts/new' => 'posts#new', as: :posts
   get '/posts/:id' => 'posts#show', as: :show_post
-  get '/posts/:id/export' => 'posts#export_csv', as: :export_as_csv
+  get '/posts/:id/export_csv' => 'posts#export_csv', as: :export_as_csv
   post '/posts/new' => 'posts#create'
   match '/posts' => 'posts#list', as: :list_posts, via: [:get, :post]
 
