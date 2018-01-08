@@ -1,4 +1,8 @@
 class PostsController < ApplicationController
+  def index
+    @posts = Post.all
+  end
+
   def new
     @post = Post.new
     @categories = Category.all
@@ -22,5 +26,9 @@ class PostsController < ApplicationController
     @categories = Category.all
 
     success ? redirect_to(root_url) : render(:new)
+  end
+
+  def show
+    @post = Post.find(params[:id])
   end
 end

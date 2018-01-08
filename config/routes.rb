@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   post '/categories/new' => 'categories#create'
 
   get '/posts/new' => 'posts#new', as: :posts
+  get '/posts/:id' => 'posts#show', as: :show_post
   post '/posts/new' => 'posts#create'
 
   root 'posts#index'

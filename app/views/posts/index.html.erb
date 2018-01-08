@@ -2,3 +2,11 @@
 <%= link_to 'Nova Postagem', :posts %>
 <%= link_to 'Nova Categoria', :categories %>
 
+</br>
+
+<ul>
+  <% @posts.each do |post| %>
+    <li> <%= link_to post.title, show_post_path(post) %> </li>
+  <% end %>
+</ul>
+

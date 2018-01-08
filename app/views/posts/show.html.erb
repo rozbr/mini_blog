@@ -1,0 +1,17 @@
+
+<h1> <%= @post.title %> </h1>
+
+<hr>
+</br>
+
+<%= @post.content %>
+
+</br>
+</br>
+<hr>
+
+Categorias:
+<% @post.categories.each do |category| %>
+  < <%= category.name %> >
+<% end %>
+
