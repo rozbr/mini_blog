@@ -1,0 +1,9 @@
+
+<%= form_for @post do |form| %>
+  <%= form.text_field :title, placeholder: 'Título' %>
+  </br>
+  <%= form.text_area :content, placeholder: 'Escreva seu post aqui..' %>
+  </br>
+  <%= form.submit 'Cadastrar Postagem' %>
+<% end %>
+

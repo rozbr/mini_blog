@@ -4,5 +4,8 @@ Rails.application.routes.draw do
   get '/categories/new' => 'categories#new', as: :categories
   post '/categories/new' => 'categories#create'
 
+  get '/posts/new' => 'posts#new', as: :posts
+  post '/posts/new' => 'posts#create'
+
   root 'posts#index'
 end
