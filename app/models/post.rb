@@ -6,10 +6,16 @@ class Post < ApplicationRecord
 
   def to_csv posts
     CSV.generate do |csv|
-      csv << %w{ title content }
+      csv << %w{ title content categories }
 
       posts.each do |post|
-        csv << [ post.title, post.content ]
+        categories = []
+
+        post.categories.each do |category|
+          categories << category.name
+        end
+
+        csv << [ post.title, post.content, categories.join(", ") ]
       end
     end
   end
