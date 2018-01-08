@@ -2,8 +2,16 @@
 <%= form_for @post do |form| %>
   <%= form.text_field :title, placeholder: 'Título' %>
   </br>
+
   <%= form.text_area :content, placeholder: 'Escreva seu post aqui..' %>
   </br>
+
+  <% @categories.each do |category| %>
+    <%= check_box_tag "checked_categories[#{category.id}]" %>
+    <%= category.name %>
+  <% end %>
+  </br>
+
   <%= form.submit 'Cadastrar Postagem' %>
 <% end %>
 

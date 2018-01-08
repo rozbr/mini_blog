@@ -1,15 +1,26 @@
 class PostsController < ApplicationController
   def new
     @post = Post.new
+    @categories = Category.all
   end
 
   def create
+    success = false
+
     @post = Post.new params.require(:post).permit(:title, :content)
 
-    if @post.save
-      redirect_to root_url
-    else
-      render :new
+    if params.has_key? :checked_categories
+      checked_categories = params.require(:checked_categories)
+
+      checked_categories.keys.each do |id|
+        @post.categories << Category.find(id)
+      end
+
+      success = @post.save
     end
+
+    @categories = Category.all
+
+    success ? redirect_to(root_url) : render(:new)
   end
 end
